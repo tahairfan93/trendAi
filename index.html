@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrendAI Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">trend<span>AI</span></div>
+      <div class="nav">
+        <button class="nav-item active" data-tab="discover">
+          <span class="icon">🧭</span>
+          <span>Discover</span>
+        </button>
+        <button class="nav-item" data-tab="saved">
+          <span class="icon">📌</span>
+          <span>Saved & Hooks</span>
+        </button>
+      </div>
+      <div class="sidebar-footer">
+        <div class="pill">Future sign-in placeholder</div>
+        <div class="helper">Plug in Supabase + N8N keys in <code>config.js</code>.</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Minimalist automation dashboard</p>
+          <h1>Discover fresh signals</h1>
+          <p class="muted">Scrape Reddit and newsletter highlights, then save and transform them into hooks.</p>
+        </div>
+        <div class="actions">
+          <button id="scrape-btn" class="primary">Scrape Now</button>
+          <div id="scrape-status" class="status">Idle</div>
+        </div>
+      </header>
+
+      <section class="toolbar">
+        <div class="chip-group" id="filter-chips">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="reddit">Reddit</button>
+          <button class="chip" data-filter="newsletter">Newsletter</button>
+        </div>
+        <div class="filters">
+          <select id="sort-select" class="select">
+            <option value="recent">Most recent</option>
+            <option value="score">Highest score</option>
+          </select>
+          <button class="ghost" id="refresh-btn">Refresh</button>
+        </div>
+      </section>
+
+      <div id="alert-bar" class="alert" hidden></div>
+
+      <section id="discover-view" class="content-grid"></section>
+
+      <section id="saved-view" class="saved" hidden>
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Saved selections</p>
+              <h2>Curate your hooks</h2>
+            </div>
+            <button id="clear-saved" class="ghost">Clear saved</button>
+          </div>
+          <div id="saved-list" class="saved-list"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Hook lab</p>
+              <h2>Generate hooks & snippets</h2>
+            </div>
+            <div class="inline">
+              <label for="hook-format" class="muted">Format</label>
+              <select id="hook-format" class="select">
+                <option value="hook">Hook</option>
+                <option value="tweet">Tweet</option>
+                <option value="headline">Headline</option>
+              </select>
+            </div>
+          </div>
+          <textarea id="hook-output" class="textarea" placeholder="Select a saved item to generate hooks"></textarea>
+          <div class="hook-actions">
+            <button id="generate-hook" class="primary" disabled>Generate from selection</button>
+            <button id="save-hook" class="ghost" disabled>Save hook</button>
+          </div>
+          <div id="hooks-collection" class="hooks"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
